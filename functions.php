@@ -30,7 +30,7 @@ class svn_feed_widget extends WP_Widget {
         $datetime = date(get_option('date_format') . ' ' . get_option('time_format'), strtotime($svn_log['date']));
 
 	$html .= '<li>';
-	$html .= '<a href="' . $instance['svn_url'] . '?p=' . intval($svn_log['rev']) . '">r' . intval($svn_log['rev']) . '</a> ' . esc_attr($svn_log['author']) . ': ' . $this->limit_words(esc_attr($svn_log['msg']), $log_word_limit);
+	$html .= '<a href="' . $instance['svn_url'] . '?p=' . intval($svn_log['rev']) . '" title="' . $datetime . '">r' . intval($svn_log['rev']) . '</a> ' . esc_attr($svn_log['author']) . ': ' . $this->limit_words(esc_attr($svn_log['msg']), $log_word_limit);
 	$html .= '</li>';
       }
 
