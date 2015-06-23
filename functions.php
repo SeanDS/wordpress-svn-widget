@@ -4,8 +4,8 @@ class svn_widget extends WP_Widget {
   public function __construct() {
     parent::__construct(
       'svn_widget',
-      __('SVN Recent Commits Widget', 'text_domain'),
-      array( 'description' => __( 'Recent SVN commit messages in your sidebar!', 'text_domain' ), )
+      __('SVN Recent Commits', 'text_domain'),
+      array( 'description' => __( 'Recent SVN commit messages', 'text_domain' ), )
     );
   }
   
@@ -36,7 +36,7 @@ class svn_widget extends WP_Widget {
         $datetime = date(get_option('date_format') . ' ' . get_option('time_format'), strtotime($svn_log['date']));
 
 	$html .= '<li>';
-	$html .= '<a href="' . $instance['svn_url'] . '?p=' . intval($svn_log['rev']) . '" title="' . $datetime . '">r' . intval($svn_log['rev']) . '</a> ' . esc_attr($svn_log['author']) . ': <em>"' . $this->limit_words(esc_attr($svn_log['msg']), $log_word_limit) . '"</em>';
+	$html .= $datetime . ': ' . ' <em><a href="' . $instance['svn_url'] . '?p=' . intval($svn_log['rev']) . '" title="r' . intval($svn_log['rev']) . '">"' . $this->limit_words(esc_attr($svn_log['msg']), $log_word_limit) . '"</a></em> (' . esc_attr($svn_log['author']) . ')';
 	$html .= '</li>';
       }
 
